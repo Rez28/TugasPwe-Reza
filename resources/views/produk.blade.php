@@ -21,19 +21,41 @@
             </ul>
         </div>
         <div class="main-content">
-            <h1>Daftar Produk</h1>
-            <h5>Temukan Produk terbaik untuk kebutuhan anda</h5>
             <div class="product-grid">
-                @foreach ($produk as $item)
-                <div class="product-card">
-                    <img src="https://via.placeholder.com.200" alt="produk 1">
-                    <h3>{{ $item ->nama_produk }}</h3>
-                    <p class="price">{{ $item->harga }}</p>
-                    <p class="description">{{ $item->deskripsi }}</p>
-                    <button class="card-button">Edit</button>
-                    <button class="card-button">Delete</button>
+                <div class="main-content">
+                    <h1>Daftar Produk</h1>
+                    <h5>Temukan Produk terbaik untuk kebutuhan anda</h5>
+                    
+                    <a href="{{ route('produk.create') }}" class="btn btn-primary mb-3">Tambah Produk</a>
+
+                    @if (session('success'))
+                        <div class="alert alert-success">
+                            {{ session('success') }}
+                        </div>
+                    @endif
+                    <div class="container">
+                        <div class="row" style="mx-3">
+                            <div class="product-grid">
+                                @foreach ($produk as $item)
+                                <div class="product-card">
+                                    <img src="https://via.placeholder.com/200" alt="{{ $item->nama_produk }}">
+                                    <h3>{{ $item->nama_produk }}</h3>
+                                    <p class="price">{{ $item->harga }}</p>
+                                    <p class="description">{{ $item->deskripsi }}</p>
+                                    <a href="{{ route('produk.edit', $item->id) }}" class="btn btn-warning">Edit</a>
+                                    <form action="{{ route('produk.destroy', $item->id) }}" method="POST" style="display:inline;">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-danger">Delete</button>
+                                    </form>
+                                </div>
+                                @endforeach
+                            </div>
+                    </div>
                 </div>
-                @endforeach
+                </div>
+                
+
             </div>
         </div>
     </div>
