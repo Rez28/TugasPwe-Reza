@@ -60,26 +60,31 @@ body {
     background-color: #ecf0f1;
 }
 
+/* Header styling */
 header {
     font-size: 24px;
     margin-bottom: 20px;
 }
 
-/* Product Grid */
 .product-grid {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
-    gap: 20px;
+    justify-content: center; /* Memusatkan elemen secara horizontal */
+    gap: 20px; /* Jarak antar produk */
 }
 
 .product-card {
     background-color: white;
     padding: 20px;
-    width: 250px;
+    width: 250px; /* Lebar tetap untuk produk */
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     text-align: center;
+    transition: transform 0.2s; /* Tambahkan efek transisi saat hover */
+}
+
+.product-card:hover {
+    transform: translateY(-5px); /* Efek mengangkat saat hover */
 }
 
 .product-card img {
@@ -106,6 +111,7 @@ header {
     margin-bottom: 15px;
 }
 
+/* Button styling */
 .card-button {
     background-color: #3498db;
     color: white;
@@ -119,6 +125,10 @@ header {
 
 .card-button:hover {
     background-color: #2980b9;
+}
+
+.btn-danger {
+    margin-left: 10px; /* Add margin to separate from other buttons */
 }
 
 /* Footer styling */

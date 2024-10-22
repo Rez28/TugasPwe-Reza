@@ -1,4 +1,5 @@
 <?php
+
 use App\Http\Controllers\contohController;
 use App\Http\Controllers\ProdukController;
 use Illuminate\Support\Facades\Route;
@@ -13,7 +14,7 @@ Route::get('/index', function () {
 });
 
 // Route untuk percobaan1
-Route::get('/percobaan1',[contohController::class,'TampilContoh']);
+Route::get('/percobaan1', [contohController::class, 'TampilContoh']);
 
 // Menggunakan Route Resource untuk Produk
 Route::resource('produk', ProdukController::class);

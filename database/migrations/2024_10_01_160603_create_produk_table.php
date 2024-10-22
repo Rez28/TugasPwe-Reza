@@ -11,15 +11,16 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('produk', function (Blueprint $table) {
-            $table->id('kode_produk');
-            $table->string('nama_produk');
-            $table->text('deskripsi')->nullable();
-            $table->integer('harga');
-            $table->integer('jumlah_produk');
-            $table->string('image')->nullable();
-            $table->timestamps();
+        Schema::create('produks', function (Blueprint $table) {
+            $table->id(); // Membuat kolom 'id' dengan tipe big integer (primary key dan auto increment).
+            $table->string('kode_produk'); // Membuat kolom 'kode_produk' dengan tipe string (varchar).
+            $table->string('nama_produk'); // Membuat kolom 'nama_produk' dengan tipe string (varchar).
+            $table->integer('harga'); // Membuat kolom 'harga' dengan tipe integer (bilangan bulat).
+            $table->text('deskripsi')->nullable(); // Membuat kolom 'deskripsi' dengan tipe text dan membolehkan nilai null.
+            $table->string('foto_produk')->nullable(); // Membuat kolom 'foto_produk' dengan tipe string dan membolehkan nilai null.
+            $table->timestamps(); // Membuat dua kolom 'created_at' dan 'updated_at' secara otomatis.
         });
+        
     }
 
     /**
