@@ -9,35 +9,37 @@
 
 </head>
 <body>
+    <div class="container">
     <h1>Tambah Produk</h1>
-    <form action="{{ route('produk.store') }}" method="POST" enctype="multipart/form-data" class="p-4 shadow-sm rounded">
-      @csrf
-      <div class="mb-3">
+        <form action="{{ url('admin/produk/store') }}" method="POST" enctype="multipart/form-data" class="p-4 shadow-sm rounded">
+            @csrf
+            <div class="mb-3">
           <label for="kode_produk" class="form-label">Kode Produk</label>
           <input type="text" class="form-control" id="kode_produk" name="kode_produk" placeholder="Enter product code" required>
       </div>
       <div class="mb-3">
-          <label for="productName" class="form-label">Product Name</label>
+          <label for="productName" class="form-label">Nama Produk</label>
           <input type="text" class="form-control" id="productName" name="nama_produk" placeholder="Enter product name" required>
       </div>
       <div class="mb-3">
-          <label for="price" class="form-label">Price</label>
+          <label for="price" class="form-label">Harga</label>
           <input type="number" class="form-control" id="price" name="harga" placeholder="Enter price" required>
-      </div>
+        </div>
+        <div class="mb-3">
+        <label for="jumlah_produk" class="form-label">Jumlah Produk</label>
+        <input type="number" class="form-control" id="jumlah_produk" name="jumlah_produk" placeholder="Enter product quantity" required>
+    </div>    
       <div class="mb-3">
-          <label for="description" class="form-label">Description</label>
+          <label for="description" class="form-label">Deskripsi Produk</label>
           <textarea class="form-control" id="description" name="deskripsi" rows="3" placeholder="Enter product description" required></textarea>
-      </div>
-      <div class="mb-3">
-          <label for="productImage" class="form-label">Product Image</label>
-          <input class="form-control" type="file" id="productImage" name="foto_produk" accept="image/*" required>
-      </div>
-      <button type="submit" class="btn btn-primary">Submit</button>
-  </form>
-  
-      
-    
-    
-    <a href="{{ route('produk.index') }}">Kembali</a>
+        </div>
+        <div class="mb-3">
+            <label for="productImage" class="form-label">Gambar Produk</label>
+            <input class="form-control" type="file" id="productImage" name="foto_produk" accept="image/*" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Kirim</button>
+    </form>
+    <a href="{{ Auth::user()->role === 'admin' ? route('produk.index.admin') : route('produk.index.user') }}">Kembali</a>
+</div>
 </body>
 </html>

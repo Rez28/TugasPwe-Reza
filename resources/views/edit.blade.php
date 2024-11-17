@@ -4,42 +4,44 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Edit Produk</title>
-    <link rel="stylesheet" href="{{ asset('/css/style2.css') }}">
+    <link rel="stylesheet" href="{{asset('/css/style2.css')}}">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
 </head>
 <body>
     <h1>Edit Produk</h1>
-    <form action="{{ route('produk.update', $produk->id) }}" method="POST" enctype="multipart/form-data">
+    <form action="{{ url('admin/produk/update', $produk->id) }}" method="POST" enctype="multipart/form-data" class="p-4 shadow-sm rounded">
         @csrf
-        @method('PUT') <!-- Menambahkan metode PUT untuk update -->
+        @method('PUT')
         <div class="mb-3">
             <label for="kode_produk" class="form-label">Kode Produk</label>
-            <input type="text" name="kode_produk" class="form-control" value="{{ old('kode_produk', $produk->kode_produk) }}" required>
+            <input type="text" class="form-control" id="kode_produk" name="kode_produk" value="{{ $produk->kode_produk }}" required>
         </div>
         <div class="mb-3">
-            <label for="nama_produk" class="form-label">Nama Produk</label>
-            <input type="text" name="nama_produk" class="form-control" value="{{ old('nama_produk', $produk->nama_produk) }}" required>
+            <label for="productName" class="form-label">Product Name</label>
+            <input type="text" class="form-control" id="productName" name="nama_produk" value="{{ $produk->nama_produk }}" required>
         </div>
         <div class="mb-3">
-            <label for="harga" class="form-label">Harga</label>
-            <input type="number" name="harga" class="form-control" value="{{ old('harga', $produk->harga) }}" required>
+            <label for="price" class="form-label">Price</label>
+            <input type="number" class="form-control" id="price" name="harga" value="{{ $produk->harga }}" required>
         </div>
         <div class="mb-3">
             <label for="jumlah_produk" class="form-label">Jumlah Produk</label>
-            <input type="number" name="jumlah_produk" class="form-control" value="{{ old('jumlah_produk', $produk->jumlah_produk) }}" required>
+            <input type="number" class="form-control" id="jumlah_produk" name="jumlah_produk" value="{{ $produk->jumlah_produk }}" required>
         </div>
         <div class="mb-3">
-            <label for="deskripsi" class="form-label">Deskripsi</label>
-            <textarea name="deskripsi" class="form-control">{{ old('deskripsi', $produk->deskripsi) }}</textarea>
+            <label for="description" class="form-label">Description</label>
+            <textarea class="form-control" id="description" name="deskripsi" rows="3" required>{{ $produk->deskripsi }}</textarea>
         </div>
         <div class="mb-3">
-            <label for="foto_produk" class="form-label">Foto Produk</label>
-            <input type="file" name="foto_produk" class="form-control">
-            <small>Biarkan kosong jika tidak ingin mengubah foto.</small>
-        </div>
+            <label for="productImage" class="form-label">Product Image</label>
+            <input class="form-control" type="file" id="productImage" name="foto_produk" accept="image/*">
+            @if ($produk->foto_produk)
+                <img src="{{ asset('image/'.$produk->foto_produk) }}" alt="Current Product Image" width="150">
+            @endif
+        </div>        
         <button type="submit" class="btn btn-primary">Update</button>
     </form>
-
-    <a href="{{ route('produk.index') }}">Kembali</a>
+    <a href="{{ route('produk.index.admin') }}">Kembali</a>
 </body>
 </html>
